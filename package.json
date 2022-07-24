@@ -1,0 +1,21 @@
+{
+	"name": "mern_connector",
+	"version": "0.1.0",
+	"description": "The MERN stack",
+	"main": "backend/server.js",
+	"scripts": {
+		"start": "node badckend/server.js",
+		"server": "nodemon badckend/server.js"
+	},
+	"author": "Davwed",
+	"license": "GPL-2.0-only",
+	"dependencies": {
+		"colors": "^1.4.0",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"mongoose": "^6.4.6"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.19"
+	}
+}
