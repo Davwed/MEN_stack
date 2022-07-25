@@ -11,17 +11,14 @@ const postItem = asyncHandler(async (req, res) => {
 			type: 'Bad request',
 			message: 'Please add a text field',
 		})
-
-		const item = await Item.create({
-			name: req.body.name,
-		})
-
-		res.status(200).json(item)
 	}
 
 	res.status(200).json({
 		head: 'Success',
 		type: 'Post request',
+	})
+	const item = await Item.create({
+		name: req.body.name,
 	})
 })
 
