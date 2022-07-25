@@ -1,34 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
-router.post('/', (req, res) => {
-	res.status(200).json({
-		head: 'Success',
-		type: 'Post request',
-	})
-})
+const {
+	Post_item,
+	Get_item,
+	Delete_item,
+	Put_item,
+} = require('../controllers/item_controller')
 
-router.get('/', (res) => {
-	res.status(200).json({
-		head: 'Success',
-		type: 'Get request',
-	})
-})
+router.route('/').get(Get_item).post(Post_item)
 
-router.put('/:id', (req, res) => {
-	res.status(200).json({
-		head: 'Success',
-		type: 'Put request',
-		message: `Updated item ${req.params.id}`,
-	})
-})
-
-router.delete('/:id', (req, res) => {
-	res.status(200).json({
-		head: 'Success',
-		type: 'Delete request',
-		message: `Deleted item ${req.params.id}`,
-	})
-})
+router.route('/:id').put(Put_item).delete(Delete_item)
 
 module.exports = router
