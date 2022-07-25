@@ -1,6 +1,6 @@
-const Error_handler = (err, req, res, next) => {
-	const status_code = res.status_code ? res.status_code : 500
-	res.status(status_code)
+const errorHandler = (err, req, res, next) => {
+	const statusCode = res.statusCode ? res.statusCode : 500
+	res.status(statusCode)
 	res.json({
 		message: err.message,
 		stack: process.env.NODE_ENV === 'production' ? null : err.stack,
@@ -8,5 +8,5 @@ const Error_handler = (err, req, res, next) => {
 }
 
 module.exports = {
-	Error_handler,
+	errorHandler,
 }

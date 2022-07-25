@@ -1,16 +1,22 @@
-const async_handler = require('express-async-handler')
+const asyncHandler = require('express-async-handler')
 const Item = require('../models/item_model')
 
 //  @desc     Create item
 //  @route    POST /api/items/
 //  @access   Private
-const Post_item = async_handler(async (req, res) => {
+const postItem = asyncHandler(async (req, res) => {
 	if (!req.body) {
 		res.status(400).json({
 			head: 'Failed',
 			type: 'Bad request',
 			message: 'Please add a text field',
 		})
+
+		const item = await Item.create({
+			name: req.body.name,
+		})
+
+		res.status(200).json(item)
 	}
 
 	res.status(200).json({
@@ -22,20 +28,20 @@ const Post_item = async_handler(async (req, res) => {
 //  @desc     Read items
 //  @route    GET /api/items
 //  @access   Private
-const Get_item = async_handler(async (req, res) => {
-	const item = await Item.find()
+const getItems = asyncHandler(async (req, res) => {
+	const items = await Item.find()
 
 	res.status(200).json({
 		head: 'Success',
 		type: 'Get request',
-		body: item,
+		body: items,
 	})
 })
 
 //  @desc     Update item
 //  @route    PUT /api/items/:id
 //  @access   Private
-const Put_item = async_handler(async (req, res) => {
+const putItem = asyncHandler(async (req, res) => {
 	if (!req.body) {
 		res.status(400).json({
 			head: 'Failed',
@@ -53,7 +59,7 @@ const Put_item = async_handler(async (req, res) => {
 //  @desc     Delete item
 //  @route    DELETE /api/items/:id
 //  @access   Private
-const Delete_item = async_handler(async (req, res) => {
+const deleteItem = asyncHandler(async (req, res) => {
 	if (!req.body) {
 		res.status(400).json({
 			head: 'Failed',
@@ -69,8 +75,8 @@ const Delete_item = async_handler(async (req, res) => {
 })
 
 module.exports = {
-	Post_item,
-	Get_item,
-	Put_item,
-	Delete_item,
+	postItem,
+	getItems,
+	putItem,
+	deleteItem,
 }
