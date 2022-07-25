@@ -28,7 +28,7 @@ const getItems = asyncHandler(async (req, res) => {
 	const items = await Item.find()
 
 	if (!items) {
-		status(400)
+		res.status(400)
 		throw new Error('Bad request')
 	}
 
