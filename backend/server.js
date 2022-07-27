@@ -7,9 +7,12 @@ const connectdb = require('./config/db')
 
 const app = express()
 
+connectdb()
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(errorHandler)
-connectdb()
 app.use('/Data/Items', require('./routes/item_routes'))
+app.use('/Data/Users', require('./routes/user_routes'))
+
 app.listen(port, () => console.log(`server started on ${port}`))

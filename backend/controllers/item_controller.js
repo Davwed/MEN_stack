@@ -5,14 +5,12 @@ const Item = require('../models/item_model')
 //  @route    POST /api/items/
 //  @access   Private
 const postItem = asyncHandler(async (req, res) => {
+	const item = await Item.create({ text: req.body.text })
+
 	if (!req.body) {
 		res.status(400)
 		throw new Error('Bad request')
 	}
-
-	const item = await Item.create({
-		name: req.body.name,
-	})
 
 	res.status(200).json({
 		head: 'Success',
