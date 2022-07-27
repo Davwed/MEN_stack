@@ -70,10 +70,6 @@ const loginUser = asyncHandler(async (req, res) => {
 		res.status(400)
 		throw new Error('Invalid user data')
 	}
-
-	res.json({
-		message: 'Login User',
-	})
 })
 
 // @desc    Get user data user
