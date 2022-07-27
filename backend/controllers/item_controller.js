@@ -16,7 +16,6 @@ const postItem = asyncHandler(async (req, res) => {
 
 	res.status(200).json({
 		head: 'Success',
-		type: 'Post request',
 		body: item,
 	})
 })
@@ -33,8 +32,7 @@ const getItems = asyncHandler(async (req, res) => {
 	}
 
 	res.status(200).json({
-		head: 'Success',
-		type: 'Get request',
+		state: 'Success',
 		body: items,
 	})
 })
@@ -56,7 +54,6 @@ const putItem = asyncHandler(async (req, res) => {
 
 	res.status(200).json({
 		head: 'Success',
-		type: 'Put request',
 		body: updatedItem,
 	})
 })
@@ -74,7 +71,6 @@ const deleteItem = asyncHandler(async (req, res) => {
 
 	res.status(200).json({
 		head: 'Success',
-		type: 'Delete request',
 		body: removedItem,
 	})
 })
