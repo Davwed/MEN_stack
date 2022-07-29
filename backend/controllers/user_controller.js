@@ -61,7 +61,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 	if (user && (await bcrypt.compare(password, user.password))) {
 		res.status(200).json({
-			_id: user.id,
+			id: user._id,
 			name: user.name,
 			email: user.email,
 			token: generateToken(user._id),
@@ -76,8 +76,12 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Public
 const getMe = asyncHandler(async (req, res) => {
-	res.json({
-		message: 'Get Current User',
+	const { _id, name, email } = await User.findById(req.user.id)
+
+	res.status(200).json({
+		id: _id,
+		name,
+		email,
 	})
 })
 

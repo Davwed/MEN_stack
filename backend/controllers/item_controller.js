@@ -5,16 +5,17 @@ const Item = require('../models/item_model')
 //  @route    POST /api/items/
 //  @access   Private
 const postItem = asyncHandler(async (req, res) => {
-	const item = await Item.create({ text: req.body.text })
-
 	if (!req.body) {
 		res.status(400)
 		throw new Error('Bad request')
 	}
 
+	const item = await Item.create({ text: req.body.text })
+
 	res.status(200).json({
 		head: 'Success',
 		body: item,
+		user: req.user.id,
 	})
 })
 
@@ -22,12 +23,12 @@ const postItem = asyncHandler(async (req, res) => {
 //  @route    GET /api/items
 //  @access   Private
 const getItems = asyncHandler(async (req, res) => {
-	const items = await Item.find()
-
 	if (!items) {
 		res.status(400)
 		throw new Error('Bad request')
 	}
+
+	const items = await Item.find({ user: req.user.id })
 
 	res.status(200).json({
 		state: 'Success',
