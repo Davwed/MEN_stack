@@ -4,8 +4,8 @@
 	"description": "The MERN stack",
 	"main": "backend/server.js",
 	"scripts": {
-		"start": "node badckend/server.js",
-		"server": "nodemon badckend/server.js"
+		"start": "node src/server.js",
+		"server": "nodemon src/server.js"
 	},
 	"author": "Davwed",
 	"license": "GPL-2.0-only",
